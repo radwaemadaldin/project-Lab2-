@@ -2,18 +2,18 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Studio Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lab 2 - Responsive & Accessible UI</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
-  <!-- الهيدر والتنقل -->
+  <!-- Header & Navigation (Flexbox) -->
   <header class="site-header">
-    <a class="logo" href="index.html">Studio</a>
-    <nav>
+    <a class="logo" href="index.html">Studio UI</a>
+    <nav aria-label="Main Navigation">
       <ul>
-        <li><a class="active" href="index.html">Home</a></li>
+        <li><a class="active" href="index.html" aria-current="page">Home</a></li>
         <li><a href="components.html">Components</a></li>
         <li><a href="#about">About</a></li>
         <li><a href="#contact">Contact</a></li>
@@ -21,47 +21,63 @@
     </nav>
   </header>
 
-  <!-- المحتوى الرئيسي والـ Hero Section -->
   <div class="container">
-    <section class="hero">
-      <h1>Build clean layouts with Flexbox and Grid</h1>
-      <p>This homepage uses Flexbox for the navigation and CSS Grid for the main content. Resize the window to see it switch to a single column.</p>
+    <!-- Hero Section -->
+    <section class="hero" aria-labelledby="hero-title">
+      <h1 id="hero-title">Responsive & Accessible Layout</h1>
+      <p>This layout automatically adapts to Mobile (1 col), Tablet (2 col), and Desktop (3 col) with full Dark Mode & Accessibility support.</p>
       <div class="actions">
-        <a class="btn" href="components.html">View components</a>
-        <a class="btn btn-outline" href="#about">Learn more</a>
+        <a class="btn" href="components.html">Explore Components</a>
+        <a class="btn btn-outline" href="#modal-demo">Open CSS Modal</a>
       </div>
     </section>
 
-    <main class="grid">
+    <!-- Main Grid Content (Responsive Breakpoints: 1 / 2 / 3 columns) -->
+    <main class="grid" id="main-content">
       <article class="card">
-        <h3>Flexible navigation</h3>
-        <p>The header is a flex container. The logo and links are pushed apart with justify-content.</p>
+        <h2>Responsive Design</h2>
+        <p>Uses CSS Grid for dynamic layouts. 1 column on mobile, 2 columns on tablet, and 3 columns on desktop screens.</p>
+        <a class="btn" href="components.html">Learn More</a>
       </article>
+
       <article class="card">
-        <h3>Grid content</h3>
-        <p>Cards sit in three equal columns. The gap property handles all the spacing.</p>
+        <h2>CSS-Only Modal</h2>
+        <p>Implemented without any JavaScript using the CSS <code>:target</code> pseudo-class for seamless interactivity.</p>
+        <a class="btn" href="#modal-demo">Trigger Modal</a>
       </article>
+
       <article class="card">
-        <h3>One breakpoint</h3>
-        <p>Below 700px the grid becomes one column, so every card stacks on phones.</p>
+        <h2>Dark Mode</h2>
+        <p>Supports system dark mode automatically via <code>@media (prefers-color-scheme: dark)</code> custom properties.</p>
+        <a class="btn" href="components.html">View Swatches</a>
       </article>
 
       <section class="card wide" id="about">
-        <h2>About this page</h2>
-        <p>This wide card spans every column. All colors, the radius and the spacing come from CSS variables defined once on :root.</p>
+        <h2>About This Lab</h2>
+        <p>Built with accessibility high contrast ratios, semantic HTML5 tags, screen-reader support, and flexible CSS variables.</p>
       </section>
 
       <section class="card wide" id="contact">
-        <h2>Contact</h2>
-        <p>Questions about the lab? Send us a message.</p>
-        <a class="btn" href="mailto:ta@example.com">Email the TA</a>
+        <h2>Contact Us</h2>
+        <p>Have any questions regarding the layout or accessibility testing? Drop us an email.</p>
+        <a class="btn" href="mailto:ta@example.com">Contact TA</a>
       </section>
     </main>
   </div>
 
-  <!-- الفوتر -->
+  <!-- CSS-Only Modal Component (Uses :target) -->
+  <div id="modal-demo" class="overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="dialog">
+      <h2 id="modal-title">CSS-Only Modal</h2>
+      <p>This modal is opened using the <code>:target</code> CSS pseudo-class without taking a single line of JavaScript!</p>
+      <a class="btn" href="#">Close Modal</a>
+    </div>
+  </div>
+
   <footer class="site-footer">
-    <div class="container">In-Lab Practice (Studio)</div>
+    <div class="container">
+      <p>&copy; 2026 Studio UI Lab. All rights reserved.</p>
+    </div>
   </footer>
 
 </body>

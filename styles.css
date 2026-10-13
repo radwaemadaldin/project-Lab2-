@@ -1,209 +1,340 @@
-/* =========================================
-   1. Design System & Accessibility Variables
-   ========================================= */
-:root {
-  --primary: #ea580c;         /* برتقالي قوي لتحقيق التباين العالي */
-  --primary-dark: #c2410c;
-  --bg: #fff7ed;
-  --text: #1c1917;
-  --surface: #ffffff;
-  --border: #fed7aa;
-  --muted: #57534e;          /* لون رمادي غامق لتحقيق معايير التباين */
-  --radius: 8px;
-  --space: 16px;
+/* ==========================================================================
+   1. DESIGN SYSTEM & COLOR PALETTES (CSS Variables)
+   ========================================================================== */
 
-  /* ألوان التنبيهات */
-  --alert-bg: #ffedd5;
-  --alert-border: #f97316;
-  --alert-text: #7c2d12;
+/* 🎨 LIGHT MODE: باليتة مبهجة وملونة (Teal + Purple Gradient Feel) */
+:root {
+  color-scheme: light dark;
+
+  /* الألوان الأساسية - ملونة وحيوية */
+  --primary: #0d9488;          /* لون تركواز غني ومريح للعين */
+  --primary-hover: #0f766e;    /* درجة أغمق للـ Hover */
+  --accent: #7c3aed;           /* لون بنفسجي كمكمل حيوي */
+  
+  /* الخلفيات والكروت */
+  --bg: #f0fdf4;               /* خلفية فاتحة بدرجة نعناع هادئة */
+  --surface: #ffffff;          /* خلفية الكروت والهيدر - أبيض ناصع */
+  --text: #0f172a;             /* كحلي غامق جداً للنصوص لمنع إجهاد العين */
+  --muted: #475569;            /* رمادي نصوص فرعية */
+  --border: #cbd5e1;           /* حدود ناعمة */
+  --focus-ring: #2563eb;       /* إطار تركيز أزرق وواضح */
+
+  /* ألوان التنبيهات (Alerts) */
+  --alert-info-bg: #e0f2fe;
+  --alert-info-text: #0369a1;
+  --alert-success-bg: #dcfce7;
+  --alert-success-text: #15803d;
+  --alert-warning-bg: #fef3c7;
+  --alert-warning-text: #b45309;
+
+  /* المتغيرات الهيكلية */
+  --radius: 12px;
+  --space: 16px;
+  --font-base: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
-/* دعم الوضع المظلم (Dark Mode Support) */
+/* 🌑 DARK MODE: باليتة داكنة وفخمة جداً (Deep Slate / Dark Navy) */
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary: #fb923c;
-    --primary-dark: #f97316;
-    --bg: #0c0a09;
-    --text: #f5f5f4;
-    --surface: #1c1917;
-    --border: #44403c;
-    --muted: #d6d3d1;
+    /* الألوان الأساسية في الداكن - تركواز وبنفسجي مضيء */
+    --primary: #2dd4bf;
+    --primary-hover: #5eead4;
+    --accent: #a78bfa;
 
-    --alert-bg: #292524;
-    --alert-border: #ea580c;
-    --alert-text: #ffedd5;
+    /* الخلفيات والكروت - غامق عميق */
+    --bg: #0b0f19;              /* خلفية كحلية غامقة جداً شبه سودة */
+    --surface: #151c2c;         /* كروت بدرجة كحلي داكن راقي */
+    --text: #f8fafc;            /* نص أبيض ناصع وواضح */
+    --muted: #94a3b8;           /* رمادي فاتح للنصوص الفرعية */
+    --border: #283548;          /* حدود داكنة متناسقة */
+    --focus-ring: #2dd4bf;
+
+    /* ألوان التنبيهات في الوضع المظلم */
+    --alert-info-bg: #075985;
+    --alert-info-text: #e0f2fe;
+    --alert-success-bg: #166534;
+    --alert-success-text: #dcfce7;
+    --alert-warning-bg: #854d0e;
+    --alert-warning-text: #fef3c7;
+
+    --shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   }
 }
 
-* { 
-  box-sizing: border-box; 
+/* ==========================================================================
+   2. GLOBAL RESET & ACCESSIBILITY BASE
+   ========================================================================== */
+* {
+  box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  background: var(--bg);
+  font-family: var(--font-base);
+  background-color: var(--bg);
   color: var(--text);
   line-height: 1.6;
+  transition: background-color 0.3s, color 0.3s;
 }
 
-h1, h2, h3 { 
-  line-height: 1.2; 
-  margin: 0 0 0.5em; 
+h1, h2, h3 {
+  line-height: 1.25;
+  color: var(--text);
+  margin-top: 0;
 }
 
-p { 
-  margin: 0 0 1em; 
+a {
+  color: var(--primary);
+  text-decoration-thickness: 2px;
 }
 
-a { 
-  color: var(--primary); 
+/* دعم إمكانية الوصول والتنقل بـ Keyboard Focus */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 3px;
 }
 
-.container { 
-  max-width: 1100px; 
-  margin: 0 auto; 
-  padding: 0 var(--space); 
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 var(--space);
 }
 
-/* =========================================
-   2. Header & Navigation (Flexbox)
-   ========================================= */
+/* ==========================================================================
+   3. NAVIGATION HEADER (Flexbox Layout)
+   ========================================================================== */
 .site-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  gap: var(--space);
-  padding: 14px var(--space);
-  background: var(--surface);
-  border-bottom: 1px solid var(--border);
+  padding: 16px var(--space);
+  background-color: var(--surface);
+  border-bottom: 2px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
-.logo { 
-  font-weight: 700; 
-  font-size: 1.25rem; 
-  color: var(--text); 
-  text-decoration: none; 
+.logo {
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+  letter-spacing: -0.5px;
 }
 
-.site-header ul { 
-  display: flex; 
-  gap: 20px; 
-  list-style: none; 
-  margin: 0; 
-  padding: 0; 
+.site-header ul {
+  display: flex;
+  gap: 20px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
 }
 
-.site-header a:not(.logo) { 
-  text-decoration: none; 
-  color: var(--muted); 
-  padding: 4px 0; 
+.site-header a:not(.logo) {
+  text-decoration: none;
+  color: var(--muted);
+  font-weight: 600;
+  padding: 6px 0;
+  transition: color 0.2s;
 }
 
 .site-header a:not(.logo):hover,
-.site-header a.active { 
-  color: var(--primary); 
-  border-bottom: 2px solid var(--primary); 
+.site-header a.active {
+  color: var(--primary);
+  border-bottom: 3px solid var(--primary);
 }
 
-/* =========================================
-   3. Buttons & Form Elements
-   ========================================= */
+/* ==========================================================================
+   4. HERO SECTION & LAYOUT BREAKPOINTS (Mobile: 1col, Tablet: 2col, Desktop: 3col)
+   ========================================================================== */
+.hero {
+  padding: 48px 0 24px;
+}
+
+.hero h1 {
+  font-size: 2.25rem;
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 12px;
+}
+
+.hero p {
+  font-size: 1.15rem;
+  color: var(--muted);
+  max-width: 65ch;
+}
+
+.hero .actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+/* Grid Layout with Breakpoints */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr; /* Mobile Default (1 العمود) */
+  gap: 24px;
+  padding: 24px 0 48px;
+}
+
+/* Tablet (عمودين - 2 Columns) */
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop (3 أعمدة - 3 Columns) */
+@media (min-width: 1024px) {
+  .grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+.grid .wide {
+  grid-column: 1 / -1;
+}
+
+/* ==========================================================================
+   5. COMPONENTS (Cards, Buttons, Form, Alerts, Modal, Table)
+   ========================================================================== */
+
+/* Cards */
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 24px;
+  box-shadow: var(--shadow);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+  transform: translateY(-3px);
+}
+
+.card p {
+  color: var(--muted);
+}
+
+/* Buttons */
 .btn {
   display: inline-block;
-  padding: 10px 20px;
-  font: inherit;
-  font-weight: 600;
+  padding: 10px 22px;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 700;
   color: #ffffff;
-  background: var(--primary);
+  background-color: var(--primary);
   border: 2px solid var(--primary);
   border-radius: var(--radius);
   text-decoration: none;
   cursor: pointer;
-  transition: background .15s, border-color .15s;
+  transition: all 0.2s ease;
 }
 
-.btn:hover:not(:disabled),
-.btn.is-hover {
-  background: var(--primary-dark);
-  border-color: var(--primary-dark);
+/* تحسين تباين النص داخل الأزرار في الداكن لضمان Accessibility high score */
+@media (prefers-color-scheme: dark) {
+  .btn {
+    color: #0b0f19;
+  }
 }
 
-.btn:focus-visible,
-input:focus-visible,
-select:focus-visible { 
-  outline: 3px solid var(--primary); 
-  outline-offset: 2px; 
+.btn:hover:not(:disabled) {
+  background-color: var(--primary-hover);
+  border-color: var(--primary-hover);
+  transform: translateY(-1px);
 }
 
 .btn:disabled {
-  background: #78716c;
-  border-color: #78716c;
-  color: #f5f5f4;
+  background-color: var(--border);
+  border-color: var(--border);
+  color: var(--muted);
   cursor: not-allowed;
+  opacity: 0.7;
 }
 
-.btn-outline { 
-  background: transparent; 
-  color: var(--primary); 
+.btn-outline {
+  background-color: transparent;
+  color: var(--primary);
 }
 
-.btn-outline:hover:not(:disabled) { 
-  background: var(--primary); 
-  color: #ffffff; 
+.btn-outline:hover:not(:disabled) {
+  background-color: var(--primary);
+  color: #ffffff;
 }
 
-/* Form Styling */
-.form-group {
-  margin-bottom: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
+@media (prefers-color-scheme: dark) {
+  .btn-outline:hover:not(:disabled) {
+    color: #0b0f19;
+  }
 }
 
-label {
-  font-weight: 600;
-  color: var(--text);
-}
-
-input[type="text"],
-input[type="email"],
-select {
-  width: 100%;
-  padding: 10px 14px;
-  font: inherit;
+/* Form Elements */
+.form-card {
+  background-color: var(--surface);
+  padding: 28px;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  background: var(--surface);
+  max-width: 520px;
+  box-shadow: var(--shadow);
+}
+
+.form-group {
+  margin-bottom: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.form-group label {
+  font-weight: 700;
   color: var(--text);
 }
 
-/* =========================================
-   4. Component Library: Modal, Alerts, Cards
-   ========================================= */
-/* Alert Component */
-.alert {
-  padding: 14px 18px;
-  background: var(--alert-bg);
-  border-left: 4px solid var(--alert-border);
-  color: var(--alert-text);
+.form-group input,
+.form-group select {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
   border-radius: var(--radius);
-  margin-bottom: 20px;
+  background-color: var(--bg);
+  color: var(--text);
+  font-size: 1rem;
+}
+
+/* Alert / Notification Component */
+.alert {
+  padding: 14px 20px;
+  border-radius: var(--radius);
+  margin-bottom: 14px;
+  border-left: 5px solid currentColor;
+  font-size: 0.95rem;
   font-weight: 500;
 }
 
-/* CSS-Only Modal Component */
+.alert-info { background-color: var(--alert-info-bg); color: var(--alert-info-text); }
+.alert-success { background-color: var(--alert-success-bg); color: var(--alert-success-text); }
+.alert-warning { background-color: var(--alert-warning-bg); color: var(--alert-warning-text); }
+
+/* CSS-Only Modal Component (:target) */
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.65);
+  background-color: rgba(0, 0, 0, 0.75);
   display: flex;
   justify-content: center;
   align-items: center;
   opacity: 0;
   pointer-events: none;
-  transition: opacity .25s ease;
+  transition: opacity 0.25s ease;
+  padding: 16px;
   z-index: 1000;
 }
 
@@ -212,104 +343,75 @@ select {
   pointer-events: auto;
 }
 
-.modal-dialog {
-  background: var(--surface);
-  color: var(--text);
+.dialog {
+  background-color: var(--surface);
   padding: 28px;
-  border-radius: 12px;
-  max-width: 450px;
-  width: 90%;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
+  border-radius: var(--radius);
+  max-width: 460px;
+  width: 100%;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
 }
 
-/* Cards & Layout */
-.card {
-  background: var(--surface);
+/* Responsive Table Component */
+.table-wrap {
+  overflow-x: auto;
   border: 1px solid var(--border);
   border-radius: var(--radius);
-  padding: 24px;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  background-color: var(--surface);
+  box-shadow: var(--shadow);
 }
 
-.hero { padding: 64px 0 40px; }
-.hero p { max-width: 55ch; color: var(--muted); font-size: 1.125rem; }
-.hero .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
-
-/* =========================================
-   5. Responsive Breakpoints (Grid Layout)
-   ========================================= */
-/* Default (Mobile-first): Single Column */
-.grid {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 24px;
-  padding-bottom: 48px;
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
 }
 
-/* Tablet Screens (>= 600px): 2 Columns */
-@media (min-width: 600px) {
-  .grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
+caption {
+  padding: 12px;
+  font-weight: 700;
+  color: var(--muted);
 }
 
-/* Desktop Screens (>= 1024px): 3 Columns */
-@media (min-width: 1024px) {
-  .grid {
-    grid-template-columns: repeat(3, 1fr);
-  }
-  .grid .wide {
-    grid-column: 1 / -1;
-  }
+th, td {
+  padding: 14px 18px;
+  border-bottom: 1px solid var(--border);
 }
 
-/* Tables & Helpers */
-.table-wrap { overflow-x: auto; border: 1px solid var(--border); border-radius: var(--radius); }
-table { width: 100%; min-width: 520px; border-collapse: collapse; }
-th, td { padding: 12px 16px; text-align: left; }
-th { background: var(--primary); color: #ffffff; }
-tbody tr:nth-child(even) { background: var(--bg); }
-.section { padding: 32px 0 8px; }
-.row { display: flex; flex-wrap: wrap; gap: 16px; align-items: center; }
-.site-footer { border-top: 1px solid var(--border); padding: 24px 0; color: var(--muted); text-align: center; }
-/* Dark Mode Support */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --bg: #0f172a;
-    --card: #1e293b;
-    --text: #f8fafc;
-    --text-muted: #94a3b8;
-    --border: #334155;
-    --primary: #38bdf8;
-    --primary-hover: #0284c7;
-    --alert-bg: #1e1b4b;
-    --alert-border: #6366f1;
-    --alert-text: #e0e7ff;
-    --modal-bg: #1e293b;
-  }
+th {
+  background-color: var(--surface);
+  color: var(--text);
+  font-weight: 700;
+}
 
-  body {
-    background-color: var(--bg) !important;
-    color: var(--text) !important;
-  }
+tbody tr:hover {
+  background-color: var(--bg);
+}
 
-  .card, 
-  header, 
-  nav,
-  .form-group, 
-  .form-container, 
-  .modal-content,
-  .alert {
-    background-color: var(--card) !important;
-    border-color: var(--border) !important;
-    color: var(--text) !important;
-  }
+.badge {
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 700;
+  background-color: var(--alert-success-bg);
+  color: var(--alert-success-text);
+}
 
-  input, 
-  select, 
-  textarea {
-    background-color: #0f172a !important;
-    color: #f8fafc !important;
-    border-color: #334155 !important;
-  }
+.badge.off {
+  background-color: var(--alert-warning-bg);
+  color: var(--alert-warning-text);
+}
+
+/* Footer */
+.site-footer {
+  margin-top: 48px;
+  padding: 24px 0;
+  border-top: 1px solid var(--border);
+  text-align: center;
+  color: var(--muted);
+}
+
+.section {
+  padding: 24px 0 8px;
 }

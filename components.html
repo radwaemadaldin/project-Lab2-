@@ -2,14 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Studio Component Library</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Component Library - Lab 2</title>
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+  <!-- Header Navigation -->
   <header class="site-header">
-    <a class="logo" href="index.html">Studio</a>
+    <a class="logo" href="index.html">Studio UI</a>
     <nav aria-label="Main Navigation">
       <ul>
         <li><a href="index.html">Home</a></li>
@@ -21,38 +22,30 @@
   <main class="container">
     <section class="section">
       <h1>Component Library</h1>
-      <p>Accessible UI components built with CSS layout standards.</p>
+      <p>Explore all customized components with dark mode and WCAG accessible colors.</p>
     </section>
 
     <!-- Alert / Notification Component -->
     <section class="section">
-      <h2>Alert / Notification</h2>
-      <div class="alert" role="status">
-        <strong>Success!</strong> Your preferences have been saved successfully.
+      <h2>Alerts / Notifications</h2>
+      <div class="alert alert-info" role="status">
+        <strong>Info:</strong> Your profile has been updated successfully.
       </div>
-    </section>
-
-    <!-- CSS-Only Modal Trigger & Component -->
-    <section class="section">
-      <h2>CSS-Only Modal</h2>
-      <a class="btn" href="#modal-demo">Open Modal</a>
-
-      <div id="modal-demo" class="overlay" aria-modal="true" role="dialog" aria-labelledby="modal-title">
-        <div class="modal-dialog">
-          <h3 id="modal-title">CSS Modal Window</h3>
-          <p>This modal is fully functional using pure CSS (:target pseudo-class) without JavaScript.</p>
-          <a class="btn" href="#">Close Modal</a>
-        </div>
+      <div class="alert alert-success" role="status">
+        <strong>Success:</strong> Component library loaded with full dark mode support!
+      </div>
+      <div class="alert alert-warning" role="status">
+        <strong>Warning:</strong> Please make sure to check Lighthouse Accessibility score.
       </div>
     </section>
 
     <!-- Form Elements Component -->
     <section class="section">
       <h2>Form Elements</h2>
-      <form style="max-width: 400px;" onsubmit="return false;">
+      <form class="form-card" action="#" method="get" aria-label="Sample Form">
         <div class="form-group">
           <label for="username">Full Name</label>
-          <input type="text" id="username" name="username" placeholder="Enter your name" required>
+          <input type="text" id="username" name="username" placeholder="e.g. Ranya Ayman" required>
         </div>
 
         <div class="form-group">
@@ -63,29 +56,79 @@
         <div class="form-group">
           <label for="role">Select Role</label>
           <select id="role" name="role">
+            <option value="student">Student</option>
             <option value="developer">Developer</option>
             <option value="designer">Designer</option>
-            <option value="manager">Manager</option>
           </select>
         </div>
 
-        <button type="submit" class="btn">Submit Form</button>
+        <div class="form-group">
+          <button type="submit" class="btn">Submit Form</button>
+          <button type="reset" class="btn btn-outline">Reset</button>
+          <button type="button" class="btn" disabled>Disabled Action</button>
+        </div>
       </form>
     </section>
 
-    <!-- Buttons -->
+    <!-- CSS-Only Modal Trigger -->
     <section class="section">
-      <h2>Buttons</h2>
-      <div class="row">
-        <button class="btn" type="button">Default Button</button>
-        <button class="btn btn-outline" type="button">Outline Button</button>
-        <button class="btn" type="button" disabled>Disabled Button</button>
+      <h2>CSS-Only Modal Component</h2>
+      <p>Click the button below to launch the overlay modal without JavaScript.</p>
+      <a class="btn" href="#component-modal">Trigger Modal Window</a>
+    </section>
+
+    <!-- Responsive Table Component -->
+    <section class="section">
+      <h2>Responsive Table</h2>
+      <div class="table-wrap">
+        <table>
+          <caption>User Directory & Roles</caption>
+          <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Role</th>
+              <th scope="col">Email</th>
+              <th scope="col">Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Ada Lovelace</td>
+              <td>Engineer</td>
+              <td>ada@example.com</td>
+              <td><span class="badge">Active</span></td>
+            </tr>
+            <tr>
+              <td>Linus Torvalds</td>
+              <td>Maintainer</td>
+              <td>linus@example.com</td>
+              <td><span class="badge">Active</span></td>
+            </tr>
+            <tr>
+              <td>Grace Hopper</td>
+              <td>Admiral</td>
+              <td>grace@example.com</td>
+              <td><span class="badge off">Away</span></td>
+            </tr>
+          </tbody>
+        </table>
       </div>
     </section>
   </main>
 
+  <!-- Modal Target -->
+  <div id="component-modal" class="overlay" role="dialog" aria-modal="true" aria-labelledby="comp-modal-title">
+    <div class="dialog">
+      <h2 id="comp-modal-title">Library Modal</h2>
+      <p>This is a purely CSS-based modal window meeting all high-contrast accessibility standards.</p>
+      <a class="btn" href="#">Close Window</a>
+    </div>
+  </div>
+
   <footer class="site-footer">
-    <div class="container">Component Library - Studio</div>
+    <div class="container">
+      <p>&copy; 2026 Studio UI Component Library.</p>
+    </div>
   </footer>
 
 </body>
